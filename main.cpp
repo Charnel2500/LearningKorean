@@ -32,7 +32,7 @@ int main() {
     };
     
     
-    std::cout << "Aplikacja do nauki jezyka koreanskiego." << std::endl;
+    std::cout << "Aplikacja do nauki jezyka koreanskiego. Możesz się wiele nauczyć!" << std::endl;
     std::cout << "Wybierz kategorie do nauki (1 - rodzina, 2 - pory roku, 3 - czesci ciala." << std::endl;
     int wybor=0;
     std::cin >> wybor;
