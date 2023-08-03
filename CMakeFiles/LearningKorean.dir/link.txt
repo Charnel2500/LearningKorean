@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/LearningKorean.dir/main.cpp.o -o LearningKorean 
