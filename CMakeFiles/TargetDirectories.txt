@@ -1,5 +1,0 @@
-/home/jakub/C++/NaukaKoreanskiegoAplikacja/CMakeFiles/LearningKorean.dir
-/home/jakub/C++/NaukaKoreanskiegoAplikacja/CMakeFiles/clean_target.dir
-/home/jakub/C++/NaukaKoreanskiegoAplikacja/CMakeFiles/pack.dir
-/home/jakub/C++/NaukaKoreanskiegoAplikacja/CMakeFiles/edit_cache.dir
-/home/jakub/C++/NaukaKoreanskiegoAplikacja/CMakeFiles/rebuild_cache.dir
