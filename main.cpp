@@ -34,28 +34,70 @@ int main() {
     
     std::cout << "Aplikacja do nauki jezyka koreanskiego. Możesz się wiele nauczyć!" << std::endl;
     std::cout << "Wybierz kategorie do nauki (1 - rodzina, 2 - pory roku, 3 - czesci ciala." << std::endl;
-    int wybor=0;
-    std::cin >> wybor;
-    if (wybor == 1)
+    int choice=0;
+    std::cin >> choice;
+    if (choice == 1)
     {
         std::cout << "Wybrales kategorie 1 - rodzina" << std::endl;
         for (const auto& entry : family) {
             std::cout << "Polski: " << entry.first << " | Koreański: " << entry.second << std::endl;
         }
     }
-    if (wybor == 2)
+    if (choice == 2)
     {
         std::cout << "Wybrales kategorie 2 - pory roku" << std::endl;
         for (const auto& entry : seasons) {
             std::cout << "Polski: " << entry.first << " | Koreański: " << entry.second << std::endl;
         }
     }
-    if (wybor == 3)
+    if (choice == 3)
     {
         std::cout << "Wybrales kategorie 3 - czesci ciala" << std::endl;
         for (const auto& entry : bodyPart) {
             std::cout << "Polski: " << entry.first << " | Koreański: " << entry.second << std::endl;
         }
     }
+    std::cout << "Wybierz kategorie do testu (1 - rodzina, 2 - pory roku, 3 - czesci ciala." << std::endl;
+    std::cin >> choice;
+    if (choice == 1)
+    {
+        std::cout << "Wybrales kategorie 1 - rodzina" << std::endl;
+        std::string word;
+        for (const auto& entry : family) {
+            std::cout << "Napisz wyraz po koreańsku: " << entry.first << " | Koreański: " << std::endl;
+            std::cin >> word;
+            if (word == entry.second)
+                std::cout << "Odpowiedź prawidłowa." << std::endl;
+            else
+                std::cout << "Odpowiedź błędna." << std::endl;
+        }
+    }
+    if (choice == 2)
+    {
+        std::cout << "Wybrales kategorie 2 - pory roku" << std::endl;
+        std::string word;
+        for (const auto& entry : seasons) {
+            std::cout << "Napisz wyraz po koreańsku: " << entry.first << " | Koreański: " << std::endl;
+            std::cin >> word;
+            if (word == entry.second)
+                std::cout << "Odpowiedź prawidłowa." << std::endl;
+            else
+                std::cout << "Odpowiedź błędna." << std::endl;
+        }
+    }
+    if (choice == 3)
+    {
+        std::cout << "Wybrales kategorie 3 - czesci ciala" << std::endl;
+        std::string word;
+        for (const auto& entry : bodyPart) {
+            std::cout << "Napisz wyraz po koreańsku: " << entry.first << " | Koreański: " << std::endl;
+            std::cin >> word;
+            if (word == entry.second)
+                std::cout << "Odpowiedź prawidłowa." << std::endl;
+            else
+                std::cout << "Odpowiedź błędna." << std::endl;
+        }
+    }
+    
     return 0;
 }
