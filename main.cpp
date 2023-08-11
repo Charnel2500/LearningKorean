@@ -1,73 +1,8 @@
 #include <iostream>
 #include <unordered_map>
 #include <string>
-
-class User {
-private:
-    std::string firstName;
-    std::string surname;
-    int age;
-    int points;
-
-public:
-    User() : firstName(""), surname(""), age(0), points(0) {}
-
-    void setFirstName(const std::string& fName) {
-        firstName = fName;
-    }
-
-    void setSurname(const std::string& sName) {
-        surname = sName;
-    }
-
-    void setAge(int userAge) {
-        age = userAge;
-    }
-
-    void updatePoints(int newPoints) {
-        points += newPoints;
-    }
-
-    void displayWelcomeMessage() const {
-        std::cout << "Aplikacja do nauki języka koreańskiego. Możesz się wiele nauczyć!" << std::endl;
-        std::cout << "Witaj " << firstName << "! Cieszę się, że skorzystałeś z kursu języka koreańskiego. Mam nadzieję, że wiele się nauczysz!" << std::endl;
-        std::cout << "Na początek potrzebuję twoich danych, żeby zapisywać twoje postępy." << std::endl;
-        std::cout << "Twój wiek to: " << age << ". Dopiero zaczynasz, więc masz " << points << " punktów, ale z czasem będziesz ich mieć więcej." << std::endl;
-    }
-};
-
-class LanguageCategory {
-private:
-    std::unordered_map<std::string, std::string> vocabulary;
-
-public:
-    LanguageCategory(const std::unordered_map<std::string, std::string>& words) : vocabulary(words) {}
-
-    void displayWords() const {
-        for (const auto& entry : vocabulary) {
-            std::cout << "Polski: " << entry.first << " | Koreański: " << entry.second << std::endl;
-        }
-    }
-
-    void testCategory() const {
-        std::string word;
-        int correctAnswers = 0;
-
-        for (const auto& entry : vocabulary) {
-            std::cout << "Napisz wyraz po koreańsku dla: " << entry.first << " | Polski: " << std::endl;
-            std::cin >> word;
-
-            if (word == entry.second) {
-                std::cout << "Odpowiedź prawidłowa." << std::endl;
-                correctAnswers++;
-            } else {
-                std::cout << "Odpowiedź błędna. Prawidłowa odpowiedź to: " << entry.second << std::endl;
-            }
-        }
-
-        std::cout << "Twój wynik to: " << correctAnswers << " / " << vocabulary.size() << std::endl;
-    }
-};
+#include "user.h"
+#include "languageCategory.h"
 
 int main() {
     User user;
@@ -133,6 +68,24 @@ int main() {
             std::cout << "Niepoprawny wybór." << std::endl;
             return 1;
     }
+    std::cout << "Czy jesteś gotów/gotowa do testu wyboru? (1 - tak, 0 - nie): ";
+    std::cin >> choice;
+
+    if (choice == 1) {
+        switch (choice) {
+            case 1:
+                family.testClosedTask();
+                break;
+            case 2:
+                seasons.testClosedTask();
+                break;
+            case 3:
+                bodyPart.testClosedTask();
+                break;
+        }
+    } else {
+        std::cout << "Dziękuję za skorzystanie z aplikacji." << std::endl;
+    }
 
     std::cout << "Czy jesteś gotów/gotowa do testu? (1 - tak, 0 - nie): ";
     std::cin >> choice;
@@ -140,13 +93,13 @@ int main() {
     if (choice == 1) {
         switch (choice) {
             case 1:
-                family.testCategory();
+                family.testWriteWords();
                 break;
             case 2:
-                seasons.testCategory();
+                seasons.testWriteWords();
                 break;
             case 3:
-                bodyPart.testCategory();
+                bodyPart.testWriteWords();
                 break;
         }
     } else {
