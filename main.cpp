@@ -49,62 +49,63 @@ int main() {
     user.setAge(age);
 
     user.displayWelcomeMessage();
+    
+    int mainChoice = 0;
 
-    std::cout << "Wybierz kategorię do nauki (1 - rodzina, 2 - pory roku, 3 - części ciała): ";
-    int choice;
-    std::cin >> choice;
+    while (mainChoice != 5) {
+        std::cout << "Wybierz co chcesz zrobić (1 - nauczyć się, 2 - test jednokrotnego wyboru, 3 - test pisania słów po koreańsku, 4 - test tłumaczenia na polski, 5 - wyjście): ";
+        std::cin >> mainChoice;
 
-    switch (choice) {
-        case 1:
-            family.displayWords();
-            break;
-        case 2:
-            seasons.displayWords();
-            break;
-        case 3:
-            bodyPart.displayWords();
-            break;
-        default:
-            std::cout << "Niepoprawny wybór." << std::endl;
-            return 1;
-    }
-    std::cout << "Czy jesteś gotów/gotowa do testu wyboru? (1 - tak, 0 - nie): ";
-    std::cin >> choice;
-
-    if (choice == 1) {
-        switch (choice) {
+        switch (mainChoice) {
             case 1:
-                family.testClosedTask();
+            {
+                int categoryChoice;
+                std::cout << "Wybierz kategorię do nauki (1 - rodzina, 2 - pory roku, 3 - części ciała): ";
+                std::cin >> categoryChoice;
+                switch (categoryChoice) {
+                    case 1:
+                        family.displayWords();
+                        break;
+                    case 2:
+                        seasons.displayWords();
+                        break;
+                    case 3:
+                        bodyPart.displayWords();
+                        break;
+                    default:
+                        std::cout << "Niepoprawny wybór." << std::endl;
+                }
                 break;
+            }
             case 2:
-                seasons.testClosedTask();
+            {
+                int categoryChoice;
+                std::cout << "Wybierz kategorię do testu wyboru (1 - rodzina, 2 - pory roku, 3 - części ciała): ";
+                std::cin >> categoryChoice;
+                switch (categoryChoice) {
+                    case 1:
+                        family.testClosedTask();
+                        break;
+                    case 2:
+                        seasons.testClosedTask();
+                        break;
+                    case 3:
+                        bodyPart.testClosedTask();
+                        break;
+                    default:
+                        std::cout << "Niepoprawny wybór." << std::endl;
+                }
                 break;
-            case 3:
-                bodyPart.testClosedTask();
+            }
+            // Dodaj pozostałe przypadki (testWriteWordsKorean, testWriteWordsPolish)
+            case 5:
+                std::cout << "Dziękuję za skorzystanie z aplikacji." << std::endl;
                 break;
+            default:
+                std::cout << "Niepoprawny wybór." << std::endl;
         }
-    } else {
-        std::cout << "Dziękuję za skorzystanie z aplikacji." << std::endl;
     }
 
-    std::cout << "Czy jesteś gotów/gotowa do testu? (1 - tak, 0 - nie): ";
-    std::cin >> choice;
-
-    if (choice == 1) {
-        switch (choice) {
-            case 1:
-                family.testWriteWords();
-                break;
-            case 2:
-                seasons.testWriteWords();
-                break;
-            case 3:
-                bodyPart.testWriteWords();
-                break;
-        }
-    } else {
-        std::cout << "Dziękuję za skorzystanie z aplikacji." << std::endl;
-    }
 
     return 0;
 }

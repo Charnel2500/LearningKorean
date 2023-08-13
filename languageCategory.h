@@ -12,7 +12,8 @@ public:
     LanguageCategory(const std::unordered_map<std::string, std::string>& words);
 
     void displayWords() const;
-    void testWriteWords() const;
+    void testWriteWordsKorean() const;
+    void testWriteWordsPolish() const;
     void testClosedTask() const;
 };
 
