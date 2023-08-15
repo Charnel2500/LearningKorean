@@ -15,6 +15,7 @@ public:
     void testWriteWordsKorean() const;
     void testWriteWordsPolish() const;
     void testClosedTask() const;
+    void gramatics() const;
 };
 
 #endif // LANGUAGECATEGORY_H

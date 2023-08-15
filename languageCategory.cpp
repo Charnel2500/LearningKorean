@@ -89,3 +89,22 @@ void LanguageCategory::testClosedTask() const {
 
     std::cout << "Twój wynik to: " << correctAnswers << " / " << vocabulary.size() << std::endl;
 }
+
+void LanguageCategory::gramatics() const {
+    std::string word;
+    int correctAnswers = 0;
+
+    for (const auto& entry : vocabulary) {
+        std::cout << "Napisz odpowiedni czasownik: " << entry.second << "." << std::endl;
+        std::cin >> word;
+
+        if (word == entry.first) {
+            std::cout << "Odpowiedź prawidłowa." << std::endl;
+            correctAnswers++;
+        } else {
+            std::cout << "Odpowiedź błędna. Prawidłowa odpowiedź to: " << entry.first << std::endl;
+        }
+    }
+
+    std::cout << "Twój wynik to: " << correctAnswers << " / " << vocabulary.size() << std::endl;
+}

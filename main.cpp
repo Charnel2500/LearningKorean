@@ -32,6 +32,15 @@ int main() {
         {"oko", "눈"},
         {"ucho", "귀"}
     });
+    
+    LanguageCategory presentTense({
+        {"저는 중국 사람", "이에요"},
+        {"제 직업은 가수", "예요"},
+        {"저는 학생.", "이에요"},
+        {"여기가 집", "이에요"},
+        {"강아지가 귀엽", "에요"},
+        {"나는 선생님", "이에요"}
+    }); 
 
     std::string firstName, surname;
     int age;
@@ -52,8 +61,8 @@ int main() {
     
     int mainChoice = 0;
 
-    while (mainChoice != 5) {
-        std::cout << "Wybierz co chcesz zrobić (1 - nauczyć się, 2 - test jednokrotnego wyboru, 3 - test pisania słów po koreańsku, 4 - test tłumaczenia na polski, 5 - wyjście): ";
+    while (mainChoice != 6) {
+        std::cout << "Wybierz co chcesz zrobić (1 - nauczyć się, 2 - test jednokrotnego wyboru, 3 - test pisania słów po koreańsku, 4 - test tłumaczenia na polski, 5 - gramatyka, 6 - wyjście): ";
         std::cin >> mainChoice;
 
         switch (mainChoice) {
@@ -97,8 +106,61 @@ int main() {
                 }
                 break;
             }
-            // Dodaj pozostałe przypadki (testWriteWordsKorean, testWriteWordsPolish)
+            case 3:
+            {
+                int categoryChoice;
+                std::cout << "Wybierz kategorię do testu pisania słów po koreańsku (1 - rodzina, 2 - pory roku, 3 - części ciała): ";
+                std::cin >> categoryChoice;
+                switch (categoryChoice) {
+                    case 1:
+                        family.testWriteWordsKorean();
+                        break;
+                    case 2:
+                        seasons.testWriteWordsKorean();
+                        break;
+                    case 3:
+                        bodyPart.testWriteWordsKorean();
+                        break;
+                    default:
+                        std::cout << "Niepoprawny wybór." << std::endl;
+                }
+                break;
+            }
+            case 4:
+            {
+                int categoryChoice;
+                std::cout << "Wybierz kategorię do testu pisania słów po polsku (1 - rodzina, 2 - pory roku, 3 - części ciała): ";
+                std::cin >> categoryChoice;
+                switch (categoryChoice) {
+                    case 1:
+                        family.testWriteWordsPolish();
+                        break;
+                    case 2:
+                        seasons.testWriteWordsPolish();
+                        break;
+                    case 3:
+                        bodyPart.testWriteWordsPolish();
+                        break;
+                    default:
+                        std::cout << "Niepoprawny wybór." << std::endl;
+                }
+                break;
+            }
             case 5:
+            {
+                int categoryChoice;
+                std::cout << "Wybierz kategorię do nauki gramatyki (1 - czas teraźniejszy): ";
+                std::cin >> categoryChoice;
+                switch (categoryChoice) {
+                    case 1:
+                        presentTense.gramatics();
+                        break;
+                    default:
+                        std::cout << "Niepoprawny wybór." << std::endl;
+                }
+                break;
+            }
+            case 6:
                 std::cout << "Dziękuję za skorzystanie z aplikacji." << std::endl;
                 break;
             default:
