@@ -38,8 +38,9 @@ int main() {
         {"제 직업은 가수", "예요"},
         {"저는 학생.", "이에요"},
         {"여기가 집", "이에요"},
-        {"강아지가 귀엽", "에요"},
-        {"나는 선생님", "이에요"}
+        {"강아지가 귀엽", "이에요"},
+        {"나는 선생님", "이에요"},
+        {"나는 의사", "예요"}
     }); 
 
     std::string firstName, surname;
@@ -61,8 +62,8 @@ int main() {
     
     int mainChoice = 0;
 
-    while (mainChoice != 6) {
-        std::cout << "Wybierz co chcesz zrobić (1 - nauczyć się, 2 - test jednokrotnego wyboru, 3 - test pisania słów po koreańsku, 4 - test tłumaczenia na polski, 5 - gramatyka, 6 - wyjście): ";
+    while (mainChoice != 7) {
+        std::cout << "Wybierz co chcesz zrobić (1 - nauczyć się, 2 - test jednokrotnego wyboru, 3 - test pisania słów po koreańsku, 4 - test tłumaczenia na polski, 5 - gramatyka, 6 - odsłuchanie nagrań, 7 - wyjście): ";
         std::cin >> mainChoice;
 
         switch (mainChoice) {
@@ -133,14 +134,21 @@ int main() {
                 std::cin >> categoryChoice;
                 switch (categoryChoice) {
                     case 1:
+                    {
                         family.testWriteWordsPolish();
+                        
                         break;
+                    }
                     case 2:
+                    {
                         seasons.testWriteWordsPolish();
                         break;
+                    }
                     case 3:
+                    {
                         bodyPart.testWriteWordsPolish();
                         break;
+                    }
                     default:
                         std::cout << "Niepoprawny wybór." << std::endl;
                 }
@@ -161,6 +169,35 @@ int main() {
                 break;
             }
             case 6:
+            {
+                int categoryChoice;
+                std::cout << "Wybierz kategorię do odsłuchania słów po koreańsku (1 - rodzina, 2 - pory roku, 3 - części ciała): ";
+                std::cin >> categoryChoice;
+                switch (categoryChoice) {
+                    case 1:
+                    {
+                        family.displayWords();
+                        family.learnCategoryWithSound();
+                        break;
+                    }
+                    case 2:
+                    {
+                        seasons.displayWords();
+                        seasons.learnCategoryWithSound();
+                        break;
+                    }
+                    case 3:
+                    {
+                        bodyPart.displayWords();
+                        bodyPart.learnCategoryWithSound();
+                    }
+                        break;
+                    default:
+                        std::cout << "Niepoprawny wybór." << std::endl;
+                }
+                break;
+            }
+            case 7:
                 std::cout << "Dziękuję za skorzystanie z aplikacji." << std::endl;
                 break;
             default:

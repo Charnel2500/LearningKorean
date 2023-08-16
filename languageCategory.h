@@ -16,6 +16,8 @@ public:
     void testWriteWordsPolish() const;
     void testClosedTask() const;
     void gramatics() const;
+    void playSound(const std::string& word) const;
+    void learnCategoryWithSound() const;
 };
 
 #endif // LANGUAGECATEGORY_H

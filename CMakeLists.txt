@@ -7,6 +7,12 @@ add_executable(LearningKorean
     languageCategory.cpp
 )
 
+# Ustawienie standardu C++11
+set(CMAKE_CXX_STANDARD 11)
+
+# Linkowanie z biblioteką SFML
+target_link_libraries(LearningKorean PRIVATE sfml-system sfml-window sfml-graphics sfml-audio)
+
 add_custom_target(clean_target
     COMMAND rm -rf ${CMAKE_BINARY_DIR}/*.o ${CMAKE_BINARY_DIR}/LearningKorean
 )
@@ -19,3 +25,4 @@ add_custom_target(pack
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     COMMENT "Creating source archive"
 )
+
