@@ -43,20 +43,22 @@ int main() {
         {"나는 의사", "예요"}
     }); 
 
-    std::string firstName, surname;
-    int age;
-
-    std::cout << "Podaj swoje imię: ";
-    std::cin >> firstName;
-    user.setFirstName(firstName);
-
-    std::cout << "Podaj swoje nazwisko: ";
-    std::cin >> surname;
-    user.setSurname(surname);
-
-    std::cout << "Podaj swój wiek: ";
-    std::cin >> age;
-    user.setAge(age);
+    std::string firstName, surname, password;
+    int age, choiceLogin;
+    std::cout << "Chcesz się zalogować to wybierz 1, jeśli chcesz się zarejestrować to wybierz 2" << std::endl;
+    std::cin >> choiceLogin;
+    if (choiceLogin == 1)
+    {
+        user.loginUser();
+    }
+    else if (choiceLogin == 2)
+    {
+        user.registerUser();
+    }
+    else
+    {
+        std::cout << "Niepoprawna opcja, spróbuj ponownie. Jeśli chcesz się zalogować to wybierz 1, jeśli chcesz się zarejestrować to wybierz 2" << std::endl;
+    }
 
     user.displayWelcomeMessage();
     
