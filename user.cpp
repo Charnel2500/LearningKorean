@@ -34,6 +34,7 @@ void User::registerUser() {
     
     std::cout << "Podaj swoje hasło: ";
     std::cin >> password;
+    password = encryptMessage(password, 6);
 
     std::cout << "Podaj swój wiek: ";
     std::cin >> age;
@@ -70,6 +71,7 @@ bool User::loginUser() {
                     userFile.close();
                     std::cout << "Użytkownik znaleziony. Podaj hasło: ";
                     std::cin >> enteredPassword;
+                    password = decryptMessage(password, 6);
                     if (enteredPassword == password) {
                         firstName = fName;
                         surname = sName;
@@ -107,6 +109,37 @@ bool User::loginUser() {
     }
 }
 
+std::string User::encryptMessage(const std::string& message, int shift) {
+    std::string encryptedMessage = "";
+
+    for (char c : message) {
+        if (isalpha(c)) {
+            char base = (isupper(c)) ? 'A' : 'a';
+            char encryptedChar = (c - base + shift) % 26 + base;
+            encryptedMessage += encryptedChar;
+        } else {
+            encryptedMessage += c;
+        }
+    }
+
+    return encryptedMessage;
+}
+
+std::string User::decryptMessage(const std::string& message, int shift) {
+    std::string decryptedMessage = "";
+
+    for (char c : message) {
+        if (isalpha(c)) {
+            char base = (isupper(c)) ? 'A' : 'a';
+            char decryptedChar = (c - base + 26 - shift) % 26 + base;
+            decryptedMessage += decryptedChar;
+        } else {
+            decryptedMessage += c;
+        }
+    }
+
+    return decryptedMessage;
+}
 
 
 void User::displayWelcomeMessage() const {

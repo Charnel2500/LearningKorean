@@ -21,6 +21,8 @@ public:
     void updatePoints(int newPoints);
     void registerUser();
     bool loginUser();
+    std::string encryptMessage(const std::string& message, int shift);
+    std::string decryptMessage(const std::string& message, int shift);
     void displayWelcomeMessage() const;
 };
 
