@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <cstdlib>  
+#include <ctime>   
 
 User::User() : firstName(""), surname(""), password(""), age(0), points(0) {}
 
@@ -149,5 +151,39 @@ void User::displayWelcomeMessage() const {
     std::cout << "Twój wiek to: " << age << ". Dopiero zaczynasz, więc masz " << points << " punktów, ale z czasem będziesz ich mieć więcej." << std::endl;
 }
 
+void User::resetPassword() {
+    std::string newPassword;
+    std::cout << "Podaj nowe hasło: ";
+    std::cin >> newPassword;
+    password = encryptMessage(newPassword, 6);
+
+    // Zapisz nowe hasło do pliku lub bazy danych
+    std::ifstream inputFile("users.txt");
+    std::ofstream outputFile("temp_users.txt");
+    if (inputFile.is_open() && outputFile.is_open()) {
+        std::string line;
+        while (std::getline(inputFile, line)) {
+            std::istringstream iss(line);
+            std::string fName, sName, storedPassword;
+            int fileAge;
+            if (iss >> fName >> sName >> storedPassword >> fileAge) {
+                if (fName == firstName && sName == surname) {
+                    storedPassword = password;  // Zaktualizuj hasło
+                }
+                outputFile << fName << " " << sName << " " << storedPassword << " " << fileAge << "\n";
+            }
+        }
+        inputFile.close();
+        outputFile.close();
+
+        // Zamień oryginalny plik z temp_users.txt
+        std::remove("users.txt");
+        std::rename("temp_users.txt", "users.txt");
+        
+        std::cout << "Hasło zostało zresetowane." << std::endl;
+    } else {
+        std::cout << "Nie udało się otworzyć plików." << std::endl;
+    }
+}
 
 

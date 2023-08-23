@@ -24,6 +24,7 @@ public:
     std::string encryptMessage(const std::string& message, int shift);
     std::string decryptMessage(const std::string& message, int shift);
     void displayWelcomeMessage() const;
+    void resetPassword();
 };
 
 #endif // USER_H

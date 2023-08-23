@@ -45,7 +45,7 @@ int main() {
 
     std::string firstName, surname, password;
     int age, choiceLogin;
-    std::cout << "Chcesz się zalogować to wybierz 1, jeśli chcesz się zarejestrować to wybierz 2" << std::endl;
+    std::cout << "Chcesz się zalogować to wybierz 1, jeśli chcesz się zarejestrować to wybierz 2. Możesz też zresetować hasło wybierając opcję 3." << std::endl;
     std::cin >> choiceLogin;
     if (choiceLogin == 1)
     {
@@ -55,6 +55,10 @@ int main() {
     {
         user.registerUser();
     }
+    else if (choiceLogin == 3)
+    {
+        user.resetPassword();
+    }    
     else
     {
         std::cout << "Niepoprawna opcja, spróbuj ponownie. Jeśli chcesz się zalogować to wybierz 1, jeśli chcesz się zarejestrować to wybierz 2" << std::endl;
