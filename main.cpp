@@ -3,6 +3,9 @@
 #include <string>
 #include "user.h"
 #include "languageCategory.h"
+#include <fstream>
+#include <sstream>
+
 
 int main() {
     User user;
@@ -68,8 +71,8 @@ int main() {
     
     int mainChoice = 0;
 
-    while (mainChoice != 7) {
-        std::cout << "Wybierz co chcesz zrobić (1 - nauczyć się, 2 - test jednokrotnego wyboru, 3 - test pisania słów po koreańsku, 4 - test tłumaczenia na polski, 5 - gramatyka, 6 - odsłuchanie nagrań, 7 - wyjście): ";
+    while (mainChoice != 8) {
+        std::cout << "Wybierz co chcesz zrobić (1 - nauczyć się, 2 - test jednokrotnego wyboru, 3 - test pisania słów po koreańsku, 4 - test tłumaczenia na polski, 5 - gramatyka, 6 - odsłuchanie nagrań, 7- ranking, 8 - wyjście): ";
         std::cin >> mainChoice;
 
         switch (mainChoice) {
@@ -204,6 +207,26 @@ int main() {
                 break;
             }
             case 7:
+            {
+                std::vector<User> users;
+
+                std::ifstream userFile("users.txt");
+                if (userFile.is_open()) {
+                    std::string fName, sName, password;
+                    int age;
+                    while (userFile >> fName >> sName >> password >> age) {
+                        users.push_back(User(fName, sName, password, age, 0)); // Ustawiamy początkowe punkty na 0
+                    }
+                    userFile.close();
+                } else {
+                    std::cout << "Nie udało się otworzyć pliku users.txt." << std::endl;
+                    return 1;
+                }
+
+                int rankingCount = 2;
+                user.displayTopUsers(users, rankingCount);
+            }
+            case 8:
                 std::cout << "Dziękuję za skorzystanie z aplikacji." << std::endl;
                 break;
             default:

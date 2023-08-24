@@ -2,6 +2,7 @@
 #define USER_H
 
 #include <string>
+#include <vector>
 
 class User {
 private:
@@ -13,7 +14,7 @@ private:
 
 public:
     User();
-
+    User(const std::string& fName, const std::string& sName, const std::string& userPassword, int userAge, int userPoints);
     void setFirstName(const std::string& fName);
     void setSurname(const std::string& sName);
     void setPassword(const std::string& userPassword);
@@ -25,7 +26,11 @@ public:
     std::string decryptMessage(const std::string& message, int shift);
     void displayWelcomeMessage() const;
     void resetPassword();
+    bool compareByPoints(const User& user1, const User& user2);
+    void displayTopUsers(const std::vector<User>& users, int count) const;
 };
 
 #endif // USER_H
+
+
 

@@ -4,6 +4,7 @@
 #include <sstream>
 #include <cstdlib>  
 #include <ctime>   
+#include <iomanip> 
 
 User::User() : firstName(""), surname(""), password(""), age(0), points(0) {}
 
@@ -26,6 +27,10 @@ void User::setAge(int userAge) {
 void User::updatePoints(int newPoints) {
     points += newPoints;
 }
+
+User::User(const std::string& fName, const std::string& sName, const std::string& userPassword, int userAge, int userPoints)
+    : firstName(fName), surname(sName), password(userPassword), age(userAge), points(userPoints) {}
+
 
 void User::registerUser() {
     std::cout << "Podaj swoje imię: ";
@@ -168,7 +173,7 @@ void User::resetPassword() {
             int fileAge;
             if (iss >> fName >> sName >> storedPassword >> fileAge) {
                 if (fName == firstName && sName == surname) {
-                    storedPassword = password;  // Zaktualizuj hasło
+                    storedPassword = password;  
                 }
                 outputFile << fName << " " << sName << " " << storedPassword << " " << fileAge << "\n";
             }
@@ -176,7 +181,6 @@ void User::resetPassword() {
         inputFile.close();
         outputFile.close();
 
-        // Zamień oryginalny plik z temp_users.txt
         std::remove("users.txt");
         std::rename("temp_users.txt", "users.txt");
         
@@ -185,5 +189,28 @@ void User::resetPassword() {
         std::cout << "Nie udało się otworzyć plików." << std::endl;
     }
 }
+
+bool User::compareByPoints(const User& user1, const User& user2) {
+    return user1.points > user2.points;
+}
+
+void User::displayTopUsers(const std::vector<User>& users, int count) const {
+    std::cout << "Ranking najlepszych użytkowników:" << std::endl;
+    std::cout << "---------------------------------" << std::endl;
+    std::cout << std::left << std::setw(15) << "Imię" << std::setw(15) << "Nazwisko" << "Punkty" << std::endl;
+    std::cout << "---------------------------------" << std::endl;
+
+    int numUsers = users.size();
+    int displayCount = std::min(count, numUsers);
+
+    for (int i = 0; i < displayCount; ++i) {
+        std::cout << std::left << std::setw(15) << users[i].firstName << std::setw(15) << users[i].surname << users[i].points << std::endl;
+    }
+
+    if (displayCount < count) {
+        std::cout << "Nie ma wystarczającej liczby użytkowników do wyświetlenia." << std::endl;
+    }
+}
+
 
 
